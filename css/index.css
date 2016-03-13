@@ -1,0 +1,227 @@
+.header{
+    width: 100%;
+}
+.hd{
+    width: 100%;
+    height: 70px;
+    padding-top: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.6);
+}
+.hd-bar{
+    width: 80%;
+    height: 60px;
+    margin: 0 auto;
+    line-height: 60px;
+ }
+h1{
+    text-indent: -99999em;
+    _background: url(../images/logo.png) no-repeat;
+    width: 35px;
+    height: 50px;
+}
+.nav{
+    width: 50%;
+    height: 100%;
+
+}
+.nav a{
+	float: left;
+    color: #fff;
+    font-size: 18px;
+    margin: 0 4%;
+}
+.banner{
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.banner ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.banner ul li{
+    float: left;
+}
+.banner ul li img{
+    width: 100%;
+}
+.banner ol{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -50px;
+    display: none;
+}
+.banner ol li{
+    text-indent: -99999em;
+    width: 7px;
+    height: 7px;
+    border: 3px solid #f5f5f5;
+    border-radius: 50%;
+    background: #f5f5f5;
+    float: left;
+    margin-right: 8px;
+}
+.banner ol li.hover{
+    border: 3px solid #f8f8f8;
+    background: none;
+}
+.banner a{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    margin-top: -30px;
+    border: 1px solid #fff;
+    box-sizing:border-box;
+    color: #fff ;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 2;
+    display: none;
+}
+.banner-l{
+    top: 50%;
+    left: 50px;
+}
+.banner-r{
+    top: 50%;
+    right: 50px;
+}
+.display{
+    width: 100%;
+    height: 800px;
+    background: url(../images/bg1.jpg) no-repeat fixed center;
+    background-size: cover;
+    text-align: center;
+    color: #f8f8f8;
+    font-size: 36px;
+}
+.display ul{
+    width: 918px;
+    margin: 0 auto;
+}
+.display li{
+    margin: 60px 44px;
+}
+.display ul li img{
+    height: 306px;
+}
+.display h2{
+    padding: 60px 0;
+}
+.my{
+    width: 100%;
+    height: 800px;
+    background: url(../images/am.jpg)no-repeat fixed center;
+    background-size: cover;
+    padding-top: 50px;
+}
+.contact{
+    width: 100%;
+    background: url(../images/desktop.jpg)no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.shadow{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+}
+.box{
+    text-align: center;
+    color: #fff;
+    font: bold  40px/100px 'Raleway-Regular', 'Microsoft Yahei',sans-serif;
+    padding-top: 80px
+}
+.box h2{
+    padding-bottom: 40px;
+}
+.face{
+    width: 230px;
+    height: 230px;
+    border: 4px solid rgba(255, 255, 255,.2);
+    overflow: hidden;
+    margin: 0 auto;
+    transition: 1s all ease-in;
+    transform: perspective(800px);
+}
+.face img{
+    width: 230px;
+    height: 230px;
+}
+.main{
+    width: 500px;
+    height: 360px;
+    margin: 40px auto;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.main ul{
+    height: 326px;
+    text-align: center;
+    padding-top: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.main li{
+    width: 500px;
+    height: 326px;
+    font-size: 24px;
+    color: #fff;
+    display: none;
+}
+.main li p{
+    line-height: 40px;
+}
+.quotes-r,.quotes-l{
+    width: 38px;
+    height: 33px;
+    display: block;
+    background: url(../images/quotes.png) no-repeat;
+    position: absolute;
+}
+.quotes-r{
+    background-position: -61px 0;
+    right: 0;
+    bottom: 0;
+}
+.quotes-l{
+    background-position: 0 1px;
+    left: 0;
+    top: 0;
+}
+.icon-box{
+    width: 100px;
+    height: 40px;
+    margin: 0 auto;
+}
+.icon-box i{
+    display: block;
+    color: #fff;
+    font-style: normal;
+    font-size: 36px;
+    width: 50px;
+    height: 100%;
+    cursor: pointer;
+}
+.icon-r{
+    text-align: right;
+}
