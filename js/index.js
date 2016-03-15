@@ -20,16 +20,16 @@ window.onload = function(){
 		oBanner.onmouseover = function(){
 			clearTimeout(timer);
 			timer = setTimeout(function(){
-				oNext.style.display = 'block';
-				oPrev.style.display = 'block';
+				startMove(oNext,{"opacity":1},{duration:300});
+				startMove(oPrev,{"opacity":1},{duration:300});
 				oOl.style.display = 'block';
 			},300);
 		};
 		oBanner.onmouseout = function(){
 			clearTimeout(timer);
 			timer = setTimeout(function(){
-				oNext.style.display = 'none';
-				oPrev.style.display = 'none';
+				startMove(oNext,{"opacity":0},{duration:300});
+				startMove(oPrev,{"opacity":0},{duration:300});
 				oOl.style.display = 'none';
 			},300);
 		};
@@ -60,12 +60,12 @@ window.onload = function(){
 			}else{
 				aBtn[(iNow%aBtn.length+aBtn.length)%aBtn.length].className = 'hover';
 			}
-			move(oUl,-iNow*aLi[0].offsetWidth);
+			move(oUl,-iNow*aLi[0].offsetWidth,700);
 		}
-		function move(obj,iTarget){
+		function move(obj,iTarget,duration){
 			var start = left;
 			var dis = iTarget - start;
-			var count = Math.floor(300/16);
+			var count = Math.floor(duration/16);
 			var n = 0;
 			clearInterval(obj.timer);
 			obj.timer = setInterval(function(){
@@ -96,8 +96,9 @@ window.onload = function(){
 		var oIconL = document.getElementById('icon-l');
 		var oIconR = document.getElementById('icon-r');
 		var aLi = oTxt.children;
+		oTxt.style.width = aLi.length*aLi[0].offsetWidth +'px';
 		var iNow = 0;
-		var r = 50;
+		var x = 0;
 		oFace.onclick = function(){
 			oFace.style.borderRadius = '50%';
 		};
@@ -108,32 +109,68 @@ window.onload = function(){
 			oFace.style.transform = '';
 			oFace.style.borderRadius = '';
 		};
-		function tab(){
-			for (var i = 0; i < aLi.length; i++) {
-				aLi[i].className = 'off';
-			}
-			aLi[iNow].className = 'on';
+		function drag(){
+			oTxt.onmousedown = function(ev){
+				var oEvent = ev||event;
+				var downX = oEvent.clientX;
+				var disX = downX - x;
+				document.onmousemove = function(ev){
+					var oEvent = ev||event;
+					x = oEvent.clientX - disX;
+					startMove(oTxt,{left:x});
+				};
+				document.onmouseup = function(ev){
+					var oEvent = ev||event;
+					document.onmousemove = null;
+					document.onmouseup = null;
+					oTxt.releaseCapture&&oTxt.releaseCapture();
+					var upX = oEvent.clientX;
+					if(Math.abs(upX-downX)>88){
+						if(upX>downX){
+							iNow--;
+							if(iNow<=0)iNow=0;
+						}else{
+							iNow++;
+							if(iNow>=aLi.length)iNow=aLi.length-1;
+						}
+						x = -iNow*aLi[0].offsetWidth;
+						startMove(oTxt,{left:x});
+					}else{
+						x = iNow*aLi[0].offsetWidth;
+						startMove(oTxt,{left:x});
+					}
+				};
+				oTxt.setCapture&&oTxt.setCapture();
+				return false;
+			};
 		}
+		drag();
+
 		oIconL.onclick = function(){
-			iNow--;
-			if(iNow<0)iNow = aLi.length-1;
-			tab();
+			iNow++;
+			if(iNow<=0)iNow = 0;
+			x = -iNow*aLi[0].offsetWidth;
+			if(x<=0)x = 0;
+			startMove(oTxt,{left:x});
+
 		};
 		oIconR.onclick = function(){
-			iNow++;
-			if(iNow==aLi.length)iNow = 0;
-			tab();
+			iNow--;
+			if(iNow>=aLi.length)iNow=aLi.length-1;
+			x = iNow*aLi[0].offsetWidth;
+			if(x<=-1000)x = -1000;
+			startMove(oTxt,{left:x});
 		};
 	})();
 	;(function(){
         var oContact = document.getElementById('contact');
 		var oShadow = document.getElementById('shadow');
 		oContact.style.height = document.documentElement.clientHeight +'px';
-		var scrollT = document.documentElement.scrollTop||document.body.scrollTop;
-		var scrollB = document.documentElement.clientHeight+scrollT;
-		var timer = 0;
-		var iNum = 1;
-		var iNum1 = 0.1;
+			var scrollT = document.documentElement.scrollTop||document.body.scrollTop;
+			var scrollB = document.documentElement.clientHeight+scrollT;
+			var timer = 0;
+			var iNum = 1;
+			var iNum1 = 0.1;
 			// if(oContact.offsetTop<scrollB){
 		 //        oShadow.style.opacity = iNum-iNum1.toFixed(3);
 		 //        console.log(1);

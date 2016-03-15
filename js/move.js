@@ -32,6 +32,9 @@ function startMove(obj,json,options){
         case borderWidth:
           start[name] = 0;
           break;
+        case className:
+          start[name] = on;
+          break;
       }
     };
     dis[name] = json[name] - start[name];

@@ -54,9 +54,8 @@ h1{
 }
 .banner ol{
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     left: 50%;
-    margin-left: -50px;
     display: none;
 }
 .banner ol li{
@@ -86,7 +85,7 @@ h1{
     font-size: 24px;
     font-weight: bold;
     z-index: 2;
-    display: none;
+    opacity: 0;
 }
 .banner-l{
     top: 50%;
@@ -99,7 +98,7 @@ h1{
 .display{
     width: 100%;
     height: 800px;
-    background: url(../images/bg1.jpg) no-repeat fixed center;
+    background: url(../images/background/bg1.jpg) no-repeat fixed center;
     background-size: cover;
     text-align: center;
     color: #f8f8f8;
@@ -121,13 +120,13 @@ h1{
 .my{
     width: 100%;
     height: 800px;
-    background: url(../images/am.jpg)no-repeat fixed center;
+    background: url(../images/background/am.jpg)no-repeat fixed center;
     background-size: cover;
     padding-top: 50px;
 }
 .contact{
     width: 100%;
-    background: url(../images/desktop.jpg)no-repeat;
+    background: url(../images/background/desktop.jpg)no-repeat;
     background-size: cover;
     position: relative;
     top: 0;
@@ -150,6 +149,7 @@ h1{
 }
 .box h2{
     padding-bottom: 40px;
+
 }
 .face{
     width: 230px;
@@ -180,13 +180,14 @@ h1{
     position: absolute;
     top: 0;
     left: 0;
+    cursor: move;
 }
-.main li{
+.main ul li{
     width: 500px;
     height: 326px;
     font-size: 24px;
     color: #fff;
-    display: none;
+    float: left;
 }
 .main li p{
     line-height: 40px;
@@ -195,7 +196,7 @@ h1{
     width: 38px;
     height: 33px;
     display: block;
-    background: url(../images/quotes.png) no-repeat;
+    background: url(../images/icons/quotes.png) no-repeat;
     position: absolute;
 }
 .quotes-r{
