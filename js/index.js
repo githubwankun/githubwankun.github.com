@@ -15,7 +15,7 @@ window.onload = function(){
 		var timer = 0;
 		var left = 0;
 		var W = oUl.offsetWidth/2;
-		oBanner.style.height = document.documentElement.clientHeight +'px';
+		//oBanner.style.height = document.documentElement.clientHeight +'px';
 
 		oBanner.onmouseover = function(){
 			clearTimeout(timer);
@@ -36,7 +36,6 @@ window.onload = function(){
 
 		for(var i=0;i<aBtn.length;i++){
 			aLi[i].style.width = document.documentElement.clientWidth +'px';
-			aLi[i].style.height = document.documentElement.clientHeight +'px';
 
 			;(function(index){
 				aBtn[i].onclick = function(){
@@ -99,9 +98,7 @@ window.onload = function(){
 		oTxt.style.width = aLi.length*aLi[0].offsetWidth +'px';
 		var iNow = 0;
 		var x = 0;
-		oFace.onclick = function(){
-			oFace.style.borderRadius = '50%';
-		};
+
 		oFace.onmouseover = function(){
 			oFace.style.transform = 'rotateY(180deg)';
 		};
@@ -109,63 +106,48 @@ window.onload = function(){
 			oFace.style.transform = '';
 			oFace.style.borderRadius = '';
 		};
-		function drag(){
-			oTxt.onmousedown = function(ev){
+
+		oTxt.onmousedown = function(ev){
+			var oEvent = ev||event;
+			var downX = oEvent.clientX;
+			var disX = downX - x;
+			oTxt.style.WebkitTransition='none';
+			document.onmousemove = function(ev){
 				var oEvent = ev||event;
-				var downX = oEvent.clientX;
-				var disX = downX - x;
-				document.onmousemove = function(ev){
-					var oEvent = ev||event;
-					x = oEvent.clientX - disX;
-					startMove(oTxt,{left:x});
-				};
-				document.onmouseup = function(ev){
-					var oEvent = ev||event;
-					document.onmousemove = null;
-					document.onmouseup = null;
-					oTxt.releaseCapture&&oTxt.releaseCapture();
-					var upX = oEvent.clientX;
-					if(Math.abs(upX-downX)>88){
-						if(upX>downX){
-							iNow--;
-							if(iNow<=0)iNow=0;
-						}else{
-							iNow++;
-							if(iNow>=aLi.length)iNow=aLi.length-1;
-						}
-						x = -iNow*aLi[0].offsetWidth;
-						startMove(oTxt,{left:x});
-					}else{
-						x = iNow*aLi[0].offsetWidth;
-						startMove(oTxt,{left:x});
-					}
-				};
-				oTxt.setCapture&&oTxt.setCapture();
-				return false;
+				x = oEvent.clientX - disX;
+				oTxt.style.WebkitTransform='translate3d('+x+'px,0,0)';
 			};
-		}
-		drag();
-
-		oIconL.onclick = function(){
-			iNow++;
-			if(iNow<=0)iNow = 0;
-			x = -iNow*aLi[0].offsetWidth;
-			if(x<=0)x = 0;
-			startMove(oTxt,{left:x});
-
-		};
-		oIconR.onclick = function(){
-			iNow--;
-			if(iNow>=aLi.length)iNow=aLi.length-1;
-			x = iNow*aLi[0].offsetWidth;
-			if(x<=-1000)x = -1000;
-			startMove(oTxt,{left:x});
+			document.onmouseup = function(ev){
+				var oEvent = ev||event;
+				document.onmousemove = null;
+				document.onmouseup = null;
+				var upX = oEvent.clientX;
+				if(Math.abs(upX-downX)>88){
+					if(upX>downX){
+						iNow--;
+						if(iNow<=0)iNow=0;
+					}else{
+						iNow++;
+						if(iNow>=aLi.length)iNow=aLi.length-1;
+					}
+				}
+				x = -iNow*aLi[0].offsetWidth;
+				oTxt.style.transition='.4s all ease';
+				oTxt.style.transform='translate3d('+x+'px,0,0)';				
+				oTxt.style.WebkitTransition='.4s all ease';
+				oTxt.style.WebkitTransform='translate3d('+x+'px,0,0)';				
+				oTxt.style.MozTransition='.4s all ease';
+				oTxt.style.MozTransform='translate3d('+x+'px,0,0)';				
+				oTxt.releaseCapture&&oTxt.releaseCapture();
+			};
+			oTxt.setCapture&&oTxt.setCapture();
+			return false;
 		};
 	})();
 	;(function(){
         var oContact = document.getElementById('contact');
 		var oShadow = document.getElementById('shadow');
-		oContact.style.height = document.documentElement.clientHeight +'px';
+		//oContact.style.height = document.documentElement.clientHeight +'px';
 			var scrollT = document.documentElement.scrollTop||document.body.scrollTop;
 			var scrollB = document.documentElement.clientHeight+scrollT;
 			var timer = 0;

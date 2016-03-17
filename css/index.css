@@ -36,6 +36,7 @@ h1{
 }
 .banner{
     width: 100%;
+    height: 800px;
     position: relative;
     top: 0;
     left: 0;
@@ -47,6 +48,7 @@ h1{
     left: 0;
 }
 .banner ul li{
+    height: 800px;
     float: left;
 }
 .banner ul li img{
@@ -104,15 +106,12 @@ h1{
     color: #f8f8f8;
     font-size: 36px;
 }
-.display ul{
-    width: 918px;
-    margin: 0 auto;
+.display div{
+    width: 800px;
+    margin: 80px auto;
 }
-.display li{
-    margin: 60px 44px;
-}
-.display ul li img{
-    height: 306px;
+.display div img{
+    width: 800px;
 }
 .display h2{
     padding: 60px 0;
@@ -122,10 +121,11 @@ h1{
     height: 800px;
     background: url(../images/background/am.jpg)no-repeat fixed center;
     background-size: cover;
-    padding-top: 50px;
+    padding-top: 80px;
 }
 .contact{
     width: 100%;
+    height: 100%;
     background: url(../images/background/desktop.jpg)no-repeat;
     background-size: cover;
     position: relative;
@@ -139,7 +139,7 @@ h1{
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 4;
+    z-index: 4
 }
 .box{
     text-align: center;
@@ -152,22 +152,40 @@ h1{
 
 }
 .face{
-    width: 230px;
-    height: 230px;
-    border: 4px solid rgba(255, 255, 255,.2);
-    overflow: hidden;
+    width: 320px;
+    height: 236px;
+    _border: 4px solid rgba(255, 255, 255,.2);
     margin: 0 auto;
+    position: relative;
+    top: 0;
+    left: 0;
     transition: 1s all ease-in;
-    transform: perspective(800px);
+    transform-style:preserve-3d;
+    transform: perspective(800px) rotateY(0deg);
 }
-.face img{
-    width: 230px;
-    height: 230px;
+.face div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
+
+.front{
+    background: url(../images/Onizukatumblr.gif)no-repeat;
+    background-size: 100%;
+    transform:translateZ(1px);
+}
+.back{
+    background: url(../images/moa4p.gif)no-repeat;
+    background-size: 100%;
+    transform:translateZ(-1px) scale(-1,1);
+}
+
 .main{
     width: 500px;
     height: 360px;
-    margin: 40px auto;
+    margin: 80px auto;
     overflow: hidden;
     position: relative;
     top: 0;
