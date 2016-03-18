@@ -144,47 +144,4 @@ window.onload = function(){
 			return false;
 		};
 	})();
-	;(function(){
-        var oContact = document.getElementById('contact');
-		var oShadow = document.getElementById('shadow');
-		//oContact.style.height = document.documentElement.clientHeight +'px';
-			var scrollT = document.documentElement.scrollTop||document.body.scrollTop;
-			var scrollB = document.documentElement.clientHeight+scrollT;
-			var timer = 0;
-			var iNum = 1;
-			var iNum1 = 0.1;
-			// if(oContact.offsetTop<scrollB){
-		 //        oShadow.style.opacity = iNum-iNum1.toFixed(3);
-		 //        console.log(1);
-			// }else{
-		 //        oShadow.style.opacity = '1';
-		 //        console.log(0);
-
-			// }
-			clearInterval(timer);
-			timer = setInterval(function(){
-				document.onscroll = function(){
-					// if(oContact.offsetTop<scrollB){
-					// 	//iNum-=0.1;
-				 //        //oShadow.style.opacity = Math.abs(iNum).toFixed(3);
-				 //        console.log(1);
-					// }else{
-					// 	iNum-=0.1;
-				 //        oShadow.style.opacity = Math.abs(iNum).toFixed(3);
-				 //        console.log(0);
-
-					// }
-				};
-				// addWheel(oContact,function(bDir){
-				//     if(bDir){
-				//         oShadow.style.opacity = '0';
-				//     }else{
-				//         oShadow.style.opacity = '1';
-
-				//     }
-				// });
-
-			},16);
-
-	})();
 };

@@ -1,0 +1,174 @@
+body{
+	background: url(../images/background/bathroom.jpg);
+    background-size: cover;
+}
+
+.box{
+	width: 1200px;
+	height: 800px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.box h2{
+	height: 86px;
+	text-align: center;
+	color: #f8f8f8;
+	font : bold 48px/86px Arial, Helvetica, "微软雅黑", sans-serif;
+	margin: 40px 0;
+	border-top: 4px solid rgba(255,255,255,0.2);
+}
+.rocket{
+	width: 149px;
+	height: 249px;
+	position: fixed;
+	right: 10px;
+	bottom: 0;
+    cursor: pointer;
+	background: url(../images/icons/rocket.png)no-repeat 0 0;
+}
+.js{
+	width: 660px;
+	height: 480px;
+	overflow: hidden;
+	position: relative;
+	top: 0;
+	left: 0;
+	margin: 0 auto;
+}
+.jsbox{
+	height: 480px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.list{
+	width: 660px;
+	height: 440px;
+	overflow: hidden;
+	float: left;
+
+}
+.btnbox{
+	width: 400px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -200px;
+}
+.btnbox li{
+	float: left;
+	width: 80px;
+	height: 30px;
+	background: #ccc;
+	margin: 10px;
+}
+.btnbox li span{
+	float: left;
+	width: 0;
+	height: 30px;
+	background: #399;
+}
+.list li{
+	width: 200px;
+	height: 200px;
+	float: left;
+	position: relative;
+	margin: 5px;
+	background: #ddd;
+	text-align: center;
+	color: #fff;
+	overflow: hidden;
+	cursor: pointer;
+}
+.list li span{
+	position: absolute;
+	top: 0;
+	left: -200px;
+	width: 100%;
+	height: 100%;
+	background: rgba(100,100,100,0.3);
+}
+.h5c3box{
+	width: 100%;
+	height: 600px;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+.example{
+	width: 388px;
+	height: 388px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -200px;
+}
+.example li{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #399;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+    font: bold  40px/400px 'Raleway-Regular', 'Microsoft Yahei',sans-serif;
+	border: 1px solid #ccc;
+	opacity: 0;
+	transition: 0.5s all cubic-bezier(0.79, 2.59, 0.74, 0.25);
+	transform:perspective(800px) translateX(0px) rotateY(0deg);
+	linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5));
+}
+.example li.l2{
+	opacity: 0;
+	transform: perspective(800px) translateX(-280px) rotateY(40deg);
+	z-index: 1;
+}
+.example li.l1{
+	opacity: 0.8;
+	transform: perspective(800px) translateX(-220px) rotateY(40deg);
+	z-index: 2;
+}
+.example li.cur{
+	opacity: 1;
+	z-index: 5;
+}
+.example li.r1{
+	opacity: 0.8;
+	transform: perspective(800px) translateX(220px) rotateY(-40deg);
+	z-index: 2;
+
+}
+.example li.r2{
+	opacity: 0;
+	transform: perspective(800px) translateX(280px) rotateY(-40deg);
+	z-index: 1;
+}
+
+.h5c3box a{
+	display: block;
+	width: 70px;
+	height: 40px;
+	border: 1px solid rgba(255,255,255,0.3);
+	color: #fff;
+	font-size: 36px;
+	line-height: 40px;
+}
+.h5c3box .icon-l{
+	position: absolute;
+	left: 50%;
+	top: 0;
+	margin-left: -70px;
+	border-right: none;
+}
+.h5c3box .icon-r{
+	position: absolute;
+	left: 50%;
+	top: 0;
+	border-left: none;
+	text-align: right;
+}
