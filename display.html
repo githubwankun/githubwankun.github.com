@@ -6,15 +6,19 @@
     <link href="DarthVader.ico" rel="icon" type="DarthVader.ico" />
     <link rel="stylesheet" href="./css/common.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="./css/display.css" media="screen" title="no title" charset="utf-8">
+    <script src="./js/wheel.js" charset="utf-8"></script>
     <script src="./js/move.js" charset="utf-8"></script>
     <script src="./js/display.js" charset="utf-8"></script>
 </head>
 <body>
+	<div class="scrollbar" id="scrollbar">
+		<div class="bar"></div>
+	</div>
 	<div class="box">
 		<h2>JAVASCRIPT 效果</h2>
 		<div class="js" id="js">
 			<div class="jsbox" id="jsbox">
-				<ul class="list" id="list1">
+				<ul class="on" id="list1">
 					<li>1<span></span></li>
 					<li><span></span></li>
 					<li><span></span></li>
@@ -22,7 +26,7 @@
 					<li><span></span></li>
 					<li><span></span></li>
 				</ul>
-				<ul class="list" id="list2">
+				<ul id="list2">
 					<li>2<span></span></li>
 					<li><span></span></li>
 					<li><span></span></li>
@@ -30,7 +34,7 @@
 					<li><span></span></li>
 					<li><span></span></li>
 				</ul>
-				<ul class="list" id="list3">
+				<ul id="list3">
 					<li>3<span></span></li>
 					<li><span></span></li>
 					<li><span></span></li>
@@ -38,7 +42,7 @@
 					<li><span></span></li>
 					<li><span></span></li>
 				</ul>
-				<ul class="list" id="list4">
+				<ul id="list4">
 					<li>4<span></span></li>
 					<li><span></span></li>
 					<li><span></span></li>
@@ -48,12 +52,11 @@
 				</ul>
 			</div>
 			<ol class="btnbox">
-				<li><span></span></li>
-				<li><span></span></li>
-				<li><span></span></li>
-				<li><span></span></li>
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
 			</ol>
-
 		</div>
 	</div>
 	<div class="h5c3 box">

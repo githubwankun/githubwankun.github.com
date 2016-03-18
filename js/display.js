@@ -50,23 +50,20 @@ window.onload = function(){
 		var aUl = oJsbox.getElementsByTagName('ul');
 		var oOl = oJs.getElementsByTagName('ol')[0];
 		var aLi = aUl.children;
+		var aBtn = oOl.children;
 		var aS = oOl.getElementsByTagName('span');
-		oJsbox.style.width = aUl.length*aUl[0].offsetWidth +'px';
-		var iNow = 0;
-		function next(){
-			startMove(aS[iNow],{width:80},{duration:3000,easing:'linear',complete:function(){
-				iNow++;
-				if(iNow==aS.length)iNow = 0;
-				startMove(oJsbox,{left:-iNow*aUl[0].offsetWidth},{complete:function(){
-					for(var i=0;i<aS.length;i++){
-						aS[i].style.width = 0;
+		for(var i=0;i<aBtn.length;i++){
+			(function(index){
+				aBtn[i].onclick = function(){
+					for(var i=0;i<aBtn.length;i++){
+						aBtn[i].className = '';
+						aUl[i].className = '';
 					}
-					next();
-				}});
-			}});
+					aBtn[index].className = 'active';
+					aUl[index].className = 'on';
+				};
+			})(i);
 		}
-		next();
-
 	})();
 
 	//穿墙
@@ -137,7 +134,8 @@ window.onload = function(){
 			through(aLi2[i]);
 			through(aLi3[i]);
 			through(aLi4[i]);
-		}
+
+		}		
 	})();
 
 	//h5c3展示
@@ -163,5 +161,28 @@ window.onload = function(){
 			aClass.push(aClass.shift());
 			tab();
 		};
+	})();
+
+	//滚动条
+	;(function(){
+		var oScrollBar = document.getElementById('scrollbar');
+		var oBar = oScrollBar.getElementsByTagName('div')[0];
+		oBar.onmousedown = function(ev){
+			var oEvent = ev||event;
+			var disY = oEvent.clientY - oBar.offsetTop;
+			document.onmousemove = function(ev){
+				var oEvent = ev||event;
+				var t = oEvent.clientY - disY;
+				oBar.style.top = l +'px';
+			};
+			document.onmouseup = function(){
+				document.onmousemove = null;
+				document.onmouseup = null;
+				oBar.releaseCapture&&oBar.releaseCapture();
+			};
+			oBar.setCapture&&oBar.setCapture();
+			return false;
+		};
+
 	})();
 };

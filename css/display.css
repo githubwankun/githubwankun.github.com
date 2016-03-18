@@ -1,6 +1,8 @@
 body{
 	background: url(../images/background/bathroom.jpg);
     background-size: cover;
+    overflow-x:hidden;
+	overflow-y:hidden;
 }
 
 .box{
@@ -28,7 +30,7 @@ body{
 }
 .js{
 	width: 660px;
-	height: 480px;
+	height: 520px;
 	overflow: hidden;
 	position: relative;
 	top: 0;
@@ -36,41 +38,43 @@ body{
 	margin: 0 auto;
 }
 .jsbox{
-	height: 480px;
+	height: 440px;
 	margin: 0 auto;
+	overflow: hidden;
+}
+.jsbox ul{
+	width: 660px;
+	height: 440px;
 	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
-}
-.list{
-	width: 660px;
-	height: 440px;
-	overflow: hidden;
-	float: left;
-
+	display: none;
 }
 .btnbox{
-	width: 400px;
+	width: 240px;
 	position: absolute;
 	bottom: 0;
 	left: 50%;
-	margin-left: -200px;
+	margin-left: -120px;
+	overflow: hidden;
+	text-align: center;
 }
 .btnbox li{
 	float: left;
-	width: 80px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 	background: #ccc;
-	margin: 10px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	margin: 0 10px;
 }
-.btnbox li span{
-	float: left;
-	width: 0;
-	height: 30px;
-	background: #399;
+.btnbox li.active{
+	background: #aaa;
+	color: #fcc;
 }
-.list li{
+.jsbox ul li{
 	width: 200px;
 	height: 200px;
 	float: left;
@@ -82,7 +86,7 @@ body{
 	overflow: hidden;
 	cursor: pointer;
 }
-.list li span{
+.jsbox ul li span{
 	position: absolute;
 	top: 0;
 	left: -200px;
@@ -171,4 +175,24 @@ body{
 	top: 0;
 	border-left: none;
 	text-align: right;
+}
+.scrollbar{
+	width: 10px;
+	height: 100%;
+	float: right;
+	position: relative;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: #f3f3f3;
+	z-index: 5;
+}
+.bar{
+	width: 10px;
+	height: 30px;
+	background: #bbb;
+	border-radius: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
