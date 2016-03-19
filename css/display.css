@@ -1,17 +1,15 @@
 body{
 	background: url(../images/background/bathroom.jpg);
     background-size: cover;
-    overflow-x:hidden;
-	overflow-y:hidden;
 }
 
-.box{
+.con{
 	width: 1200px;
-	height: 800px;
+	height: 888px;
 	margin: 0 auto;
 	overflow: hidden;
 }
-.box h2{
+.con h2{
 	height: 86px;
 	text-align: center;
 	color: #f8f8f8;
@@ -21,35 +19,43 @@ body{
 }
 .rocket{
 	width: 149px;
-	height: 249px;
+	height: 180px;
 	position: fixed;
 	right: 10px;
 	bottom: 0;
     cursor: pointer;
 	background: url(../images/icons/rocket.png)no-repeat 0 0;
 }
-.js{
-	width: 660px;
-	height: 520px;
+.jsbox{
+	width: 100%;
+}
+
+.through{
+	width: 630px;
+	height: 635px;
 	overflow: hidden;
 	position: relative;
 	top: 0;
 	left: 0;
-	margin: 0 auto;
 }
-.jsbox{
-	height: 440px;
-	margin: 0 auto;
-	overflow: hidden;
+.step{
+	width: 550px;
+	height: 635px;
 }
-.jsbox ul{
-	width: 660px;
-	height: 440px;
+.step span{
+	color: #fff;
+	letter-spacing:10px;
+	opacity: 0;
+    font: bold  40px/110px 'Raleway-Regular', 'Microsoft Yahei',sans-serif;
+	
+}
+.through ul{
+	width: 630px;
+	height: 635px;
 	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: 0;
-	display: none;
 }
 .btnbox{
 	width: 240px;
@@ -74,7 +80,7 @@ body{
 	background: #aaa;
 	color: #fcc;
 }
-.jsbox ul li{
+.through ul li{
 	width: 200px;
 	height: 200px;
 	float: left;
@@ -86,7 +92,7 @@ body{
 	overflow: hidden;
 	cursor: pointer;
 }
-.jsbox ul li span{
+.through ul li span{
 	position: absolute;
 	top: 0;
 	left: -200px;
