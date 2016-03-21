@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{ margin: 0; padding: 0; }
+		body{
+			background: url(images/OSX.jpg);
+			background-size: cover;
+		}
+		#box{ 
+			position:absolute; 
+			bottom:0; 
+			left:0; 
+			width:100%; 
+			text-align:center;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oBox = document.getElementById('box');
+			var aImg = oBox.getElementsByTagName('img');
+			document.onmousemove = function(ev){
+				var oEvent = ev||event;
+				for(var i=0;i<aImg.length;i++){
+					var a = oBox.offsetLeft+aImg[i].offsetLeft+aImg[i].offsetWidth/2-oEvent.clientX;
+					var b = oBox.offsetTop+aImg[i].offsetTop+aImg[i].offsetHeight/2-oEvent.clientY;
+					var dis = Math.sqrt(a*a+b*b);
+					var scale = 1-dis/500;
+					if(scale<0.5)scale = 0.5;
+					aImg[i].style.width = scale*128 +'px';
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="box">
+		<img src="images/1.png" width="64" alt="" />
+		<img src="images/2.png" width="64" alt="" />
+		<img src="images/3.png" width="64" alt="" />
+		<img src="images/4.png" width="64" alt="" />
+		<img src="images/5.png" width="64" alt="" />
+	</div>
+</body>
+</html>

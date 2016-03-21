@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>时钟</title>
+	<style>
+		*{margin:0; padding:0;}
+		.box{
+			width: 300px;
+			height: 300px;
+			border: 1px solid #000;
+			border-radius: 50%;
+			margin: 100px auto;
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+		.hou{
+			width: 6px;
+			height: 100px;
+			background: #000;
+			position: absolute;
+			top: 50px;
+			left: 50%;
+			margin-left: -3px;
+			-webkit-transform-origin:center bottom;
+			-ms-transform-origin:center bottom;
+			-o-transform-origin:center bottom;
+			transform-origin:center bottom;
+		}
+		.min{
+			width: 4px;
+			height: 120px;
+			background: #000;
+			position: absolute;
+			top: 30px;
+			left: 50%;
+			margin-left: -2px;
+			-webkit-transform-origin:center bottom;
+			-ms-transform-origin:center bottom;
+			-o-transform-origin:center bottom;
+			transform-origin:center bottom;
+		}
+		.sec{
+			width: 2px;
+			height: 140px;
+			background: #000;
+			position: absolute;
+			top: 10px;
+			left: 50%;
+			margin-left: -1px;
+			-webkit-transform-origin:center bottom;
+			-ms-transform-origin:center bottom;
+			-o-transform-origin:center bottom;
+			transform-origin:center bottom;
+		}
+		.scale{
+			width: 4px;
+			height: 8px;
+			background: #000;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -2px;
+			-webkit-transform-origin:center 150px;
+			-ms-transform-origin:center 150px;
+			-o-transform-origin:center 150px;
+			transform-origin:center 150px;
+
+		}
+		.big_scale{
+			width: 6px;
+			height: 15px;
+			background: #000;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -3px;
+			-webkit-transform-origin:center 150px;
+			-ms-transform-origin:center 150px;
+			-o-transform-origin:center 150px;
+			transform-origin:center 150px;
+
+		}
+		em{
+			width: 30px;
+			font-style: normal;
+			position: absolute;
+			top: 15px;
+			left: 50%;
+			margin-left: -15px;
+			text-align: center;
+		}
+		.cap{
+			width: 20px;
+			height: 20px;
+			background: #000;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -10px 0 0 -10px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oBox = document.querySelector('.box');
+			var oHou = document.querySelector('.hou');
+			var oMin = document.querySelector('.min');
+			var oSec = document.querySelector('.sec');
+			for(var i=0;i<60;i++){
+				var oS = document.createElement('span');
+				if (i%5==0) {
+					oS.className = 'big_scale';
+					var oEm = document.createElement('em');
+					if (i==0) {
+						oEm.innerHTML = 12;
+					} else{
+						oEm.innerHTML = i/5;
+					};
+					oS.appendChild(oEm);
+					oEm.style.transform = 'rotate('+-i*6+'deg)';
+				} else{
+					oS.className = 'scale';
+				};
+				oBox.appendChild(oS);
+				oS.style.transform = 'rotate('+i*6+'deg)';
+			}
+			function tick(){
+				var oDate = new Date();
+				oHou.style.transform = 'rotate('+(oDate.getHours()+oDate.getMinutes()/60)*30+'deg)';
+				oMin.style.transform = 'rotate('+(oDate.getMinutes()+oDate.getSeconds()/60)*6+'deg)';
+				oSec.style.transform = 'rotate('+oDate.getSeconds()*6+'deg)';
+			}
+			tick();
+			setInterval(tick,1000);
+		};
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div class="cap"></div>
+		<div class="hou"></div>
+		<div class="min"></div>
+		<div class="sec"></div>
+	</div>
+</body>
+</html>

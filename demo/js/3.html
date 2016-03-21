@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background: url(../../images/banner/starwars.jpg);
+			background-size: cover;
+		}
+		div{
+			width: 100px;
+			height: 150px;
+			background: url(./images/bb8.png)no-repeat;
+			background-size: 100%;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oBtn = document.getElementById('btn');
+			var oBox = document.getElementById('box');
+			var timer = null;
+			var aPos = [];
+			var bLeft = false,
+				bUp = false,
+				bRight = false,
+				bDown = false;
+
+			setInterval(function(){
+				if (bLeft) {
+					oBox.style.left = oBox.offsetLeft-5 +'px';
+					if (oBox.offsetLeft<0) {
+						oBox.style.left = 0;
+					};
+				};
+				if (bUp) {
+					oBox.style.top = oBox.offsetTop-5 +'px';
+					if (oBox.offsetTop<0) {
+						oBox.style.top = 0;
+					};
+				};
+				if (bRight) {
+					oBox.style.left = oBox.offsetLeft+5 +'px';
+					if (oBox.offsetLeft>document.documentElement.clientWidth - oBox.offsetWidth) {
+						oBox.style.left = document.documentElement.clientWidth - oBox.offsetWidth +'px';
+					};
+				};
+				if (bDown) {
+					oBox.style.top = oBox.offsetTop+5 +'px';
+					if (oBox.offsetTop>document.documentElement.clientHeight - oBox.offsetHeight) {
+						oBox.style.top = document.documentElement.clientHeight - oBox.offsetHeight +'px';
+					};
+				};
+			},16);
+			document.onkeydown = function(ev){
+				var oEvent = ev||event;
+	            aPos.push({"left":oBox.offsetLeft,"top":oBox.offsetTop});
+				switch (oEvent.keyCode){
+					case 37:
+						bLeft = true;
+						break;
+					case 38:
+						bUp = true;
+						break;
+					case 39:
+						bRight = true;
+						break;
+					case 40:
+						bDown = true;
+						break;
+				}
+			};
+			document.onkeyup = function(ev){
+				var oEvent = ev||event;
+	            aPos.push({"left":oBox.offsetLeft,"top":oBox.offsetTop});
+
+				switch (oEvent.keyCode){
+					case 37:
+						bLeft = false;
+						break;
+					case 38:
+						bUp = false;
+						break;
+					case 39:
+						bRight = false;
+						break;
+					case 40:
+						bDown = false;
+						break;
+				}
+			};
+
+			function drag(obj){
+				obj.onmousedown = function(ev){
+					var oEvent = ev||event;
+					var disX = oEvent.clientX - obj.offsetLeft;
+					var disY = oEvent.clientY - obj.offsetTop;
+		            aPos.push({"left":obj.offsetLeft,"top":obj.offsetTop});
+					document.onmousemove = function(ev){
+						var oEvent = ev||event;
+						var l = oEvent.clientX - disX;
+						var t = oEvent.clientY - disY;
+						if(l<0){
+							l = 0;
+						}else if(l>= document.documentElement.clientWidth - obj.offsetWidth){
+							l = document.documentElement.clientWidth - obj.offsetWidth;
+						}
+						if(t<0){
+							t = 0;
+						}else if(t>=document.documentElement.clientHeight - obj.offsetHeight){
+							t = document.documentElement.clientHeight - obj.offsetHeight;
+						}
+						obj.style.left = l +'px';
+						obj.style.top = t +'px';
+			            aPos.push({"left":obj.offsetLeft,"top":obj.offsetTop});
+					};
+					document.onmouseup = function(){
+						document.onmousemove = null;
+						document.onmouseup = null;
+						obj.releaseCapture&&obj.releaseCapture();
+					};
+					obj.setCapture&&obj.setCapture();
+					return false;
+				};
+			}
+			drag(oBox);
+			oBtn.onclick = function(){
+		        clearInterval(timer);
+		        timer = setInterval(function(){
+		        	if(aPos.length){
+		        		var oPos = aPos.pop();
+		        		oBox.style.left = oPos.left +'px';
+		        		oBox.style.top = oPos.top +'px';
+		        	}else{
+				        clearInterval(timer);
+		        	}
+		        },16);
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="回放" id="btn" />
+	<div class="box" id="box"></div>
+</body>
+</html>

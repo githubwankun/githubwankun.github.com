@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{ margin:0; padding:0; list-style:none; }
+		#box{
+			width: 600px;
+			height: 337px;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		ul{
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+		li{
+			width: 600px;
+			height: 337px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+	<script src="../../js/move.js"></script>
+	<script>
+		window.onload = function(){
+			var aLi = document.getElementsByTagName('li');
+			var oneW = aLi[0].offsetWidth;
+			var defaultW = 50;
+			for(var i=1;i<aLi.length;i++){
+				aLi[i].style.left = oneW-(aLi.length-i)*defaultW +'px';
+			}
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].index = i;
+				aLi[i].onmouseover = function(){
+					for(var i=0;i<aLi.length;i++){
+						if (i<=this.index) {
+							startMove(aLi[i],{left:i*defaultW},{duration:400});
+						} else{
+							startMove(aLi[i],{left:oneW-(aLi.length-i)*defaultW},{duration:400});
+						};
+					}
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="box">
+		<ul>
+    	<li><img src="images/mao1.jpg" width="600" /></li>
+    	<li><img src="images/mao2.jpg" width="600" /></li>
+    	<li><img src="images/mao3.jpg" width="600" /></li>
+    	<li><img src="images/mao4.jpg" width="600" /></li>
+    	<li><img src="images/mao5.jpg" width="600" /></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仿屏保</title>
+	<style>
+		*{margin:0; padding:0;}
+		body{
+			background: #000;
+			overflow: hidden;
+		}
+		canvas{
+			background: #000;
+			float: left;
+		}
+	</style>
+	<script>
+		function rnd(n,m){
+			return parseInt(n+Math.random()*(m-n));
+		}
+		document.addEventListener('DOMContentLoaded',function(){
+			var oC = document.getElementById('canvas');
+			var gd = oC.getContext('2d');
+			oC.width = document.documentElement.clientWidth;
+			oC.height = document.documentElement.clientHeight;
+			var N = 5;
+			var LEN = 20;
+			var oldPoint = [];
+			var aPoint = [];
+			for(var i=0;i<N;i++){
+				aPoint[i] = {
+					x:rnd(0,oC.width),
+					y:rnd(0,oC.height),
+					speedX:rnd(-10,10),
+					speedY:rnd(-10,10)
+				};
+			}
+			setInterval(function(){
+				gd.clearRect(0,0,oC.width,oC.height);
+				for(var i=0;i<N;i++){
+					drawP(aPoint[i]);
+				}
+				for(var i=0;i<N;i++){
+					if (aPoint[i].x<0) {
+						aPoint[i].x = 0;
+						aPoint[i].speedX *= -1;
+					};
+					if (aPoint[i].y<0) {
+						aPoint[i].y = 0;
+						aPoint[i].speedY *= -1;
+					};
+					if (aPoint[i].x >= oC.width) {
+						aPoint[i].x = oC.width;
+						aPoint[i].speedX *= -1;
+					};
+					if (aPoint[i].y >= oC.height) {
+						aPoint[i].y = oC.height;
+						aPoint[i].speedY *= -1;
+					};
+					aPoint[i].x += aPoint[i].speedX;
+					aPoint[i].y += aPoint[i].speedY;
+				}
+
+				gd.beginPath();
+				gd.moveTo(aPoint[0].x,aPoint[0].y);
+				for(var i=1;i<aPoint.length;i++){
+					gd.lineTo(aPoint[i].x,aPoint[i].y);
+				}
+				gd.closePath();
+				gd.strokeStyle = '#fff';
+				gd.stroke();
+
+				var arr = [];
+				for(var i=0;i<aPoint.length;i++){
+					arr.push({
+						x:aPoint[i].x,
+						y:aPoint[i].y
+					});
+				}
+				oldPoint.push(arr);
+				while(oldPoint.length>LEN){
+					oldPoint.shift();
+				}
+				for(var i=0;i<oldPoint.length;i++){
+					gd.beginPath();
+					var opacity = 1*(i/10);
+					gd.strokeStyle = 'rgba('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+','+opacity+')';
+					gd.moveTo(oldPoint[i][0].x,oldPoint[i][0].y);
+					for(var j=1;j<oldPoint[i].length;j++){
+						gd.lineTo(oldPoint[i][j].x,oldPoint[i][j].y);
+					}
+					gd.closePath();
+					gd.stroke();
+				}
+
+			},16);
+			function drawP(p){
+				gd.fillStyle = '#fff';
+				gd.fillRect(p.x,p.y,0,0);
+			}
+		},false);
+	</script>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+</body>
+</html>

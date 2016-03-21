@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>饼状图</title>
+	<style>
+		*{ margin: 0; padding: 0; }
+		body{
+			background: #000;
+			text-align: center;
+		}
+		canvas{
+			background: #fff;
+		}
+	</style>
+	<script>
+		function rnd(n,m){
+			return parseInt(n+Math.random()*(m-n));
+		}
+		function d2a(n){
+			return n*Math.PI/180;
+		}
+		document.addEventListener('DOMContentLoaded',function(){
+			var oC = document.getElementById('canvas');
+			var gd = oC.getContext('2d');
+			var x = oC.width/2;
+			var y = oC.height/2;
+			var r = 200;
+			var arr = [422,225,300,111,500,357];
+			function drawA(s,e,c){
+				gd.beginPath();
+				gd.moveTo(x,y);
+				gd.arc(x,y,r,d2a(s-90),d2a(e-90),false);
+				gd.fillStyle = c;
+				gd.fill();
+				gd.stroke();
+			}
+			var sum = 0;
+			for(var i=0;i<arr.length;i++){
+				sum += arr[i];
+			}
+			var aD = [];
+			for(var i=0;i<arr.length;i++){
+				aD.push(arr[i]/sum*360);
+			}
+			var a = 0;
+			for(var i=0;i<arr.length;i++){
+				drawA(a,aD[i]+a,'rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')');
+				a += aD[i];
+			}
+		},false);
+	</script>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="600"></canvas>
+</body>
+</html>

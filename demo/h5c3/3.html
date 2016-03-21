@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>柱状图</title>
+	<style>
+		*{ margin: 0; padding: 0; }
+		body{
+			background: #000;
+			text-align: center;
+		}
+		canvas{
+			background: #fff;
+			padding: 0 20px;
+		}
+	</style>
+	<script>
+		function rnd(n,m){
+			return parseInt(n+Math.random()*(m-n));
+		}
+		document.addEventListener('DOMContentLoaded',function(){
+			var oC = document.getElementById('canvas');
+			var arr = [422,225,300,111,500,357];
+			var gd = oC.getContext('2d');
+			var iMax = Math.max.apply(null,arr);
+			var aH = [];
+			for(var i=0;i<arr.length;i++){
+				aH[i] = arr[i]/iMax*oC.height;
+			}
+			var w = oC.width/(aH.length*3-2);
+			var iS = w*2;
+			for(var i=0;i<aH.length;i++){
+				gd.fillStyle = 'rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+				gd.fillRect(i*w+i*iS,oC.height-aH[i],w,aH[i]);
+			}
+		},false);
+	</script>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="600"></canvas>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* { padding: 0; margin: 0; }
+		li { list-style: none; }
+		body { background: #444; }
+		img { border: none; }
+		#znsRotatePic { width: 900px; height: 380px; margin: 80px auto 0; position: relative; background: #000 url(images/bg.jpg); overflow: hidden; }
+		#znsRotatePic li { width: 250px; height: 340px; position: absolute; text-align: center;}
+		#znsRotatePic li span { width: 212px; height: 90px; overflow: hidden; position: absolute; bottom: 0; left: 20px;
+			background:url('images/shade.png') !important;
+			background:none;
+			filter:none!important;
+			filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/shade.png',sizingMethod='images');
+		}
+		#znsRotatePic img { position: relative; top:0; }
+		#znsRotatePic .pic1 { top: 20px; left: 77px; z-index:1; }
+		#znsRotatePic .pic1 img {top:20px;}
+		#znsRotatePic .pic2 { top: 55px; left: 336px; z-index:2; }
+		#znsRotatePic .pic3 { top: 20px; left: 595px; z-index:1; }
+		#znsRotatePic .pic3 img {top:20px;}
+		#znsRotatePic .unactive {filter: alpha(opacity=20); opacity: 0.2;}
+	</style>
+	<script src="../../js/move.js"></script>
+	<script>
+		function getStyle(obj,sName){
+			return (obj.currentStyle||getComputedStyle(obj,false))[sName];
+		}
+		window.onload = function(){
+			var oBtn1 = document.getElementById('btn1');
+			var oBtn2 = document.getElementById('btn2');
+			var oUl = document.getElementById('znsRotatePic');
+			var aLi = oUl.getElementsByTagName('li');
+			var aImg = oUl.getElementsByTagName('img');
+			var aA = oUl.getElementsByTagName('a');
+			var aPos = [];
+			aA[0].onclick = function(){
+				toRight();
+				return false;
+			};
+			aA[2].onclick = function(){
+				toLeft();
+				return false;
+			};
+			for(var i=0;i<aLi.length;i++){
+				aPos.push({
+					left:aLi[i].offsetLeft,
+					top:aLi[i].offsetTop,
+					imgO:getStyle(aImg[i],'opacity'),
+					imgW:aImg[i].offsetWidth,
+					imgT:aImg[i].offsetTop,
+					fnClick:aA[i].onclick
+				});
+			}
+			oBtn1.onclick = toRight;
+			function toRight(){
+				aPos.push(aPos.shift());
+				for(var i=0;i<aPos.length;i++){
+					startMove(aLi[i],{left:aPos[i].left,top:aPos[i].top});
+					startMove(aImg[i],{opacity:aPos[i].imgO,width:aPos[i].imgW,top:aPos[i].imgT});
+					aA[i].onclick = aPos[i].fnClick;
+				}
+			}
+
+			oBtn2.onclick=toLeft;
+			function toLeft(){
+				aPos.unshift(aPos.pop());
+				for(var i=0;i<aPos.length;i++){
+					startMove(aLi[i],{left:aPos[i].left,top:aPos[i].top});
+					startMove(aImg[i],{opacity:aPos[i].imgO,width:aPos[i].imgW,top:aPos[i].imgT});
+					aA[i].onclick = aPos[i].fnClick;
+				}
+			}
+		};
+
+	</script>
+</head>
+<body>
+	<input type="button" value="往右面走" id="btn1" />
+	<input type="button" value="往左面走" id="btn2" />
+	<ul id="znsRotatePic">
+		<li class="pic1">
+			<a href="javascript:;"><img src="images/pic1.gif" alt="pic1" class="unactive" width="187" /></a>
+			<span></span>
+		</li>
+		<li class="pic2">
+			<a href="javascript:;"><img src="images/pic2.gif" alt="pic2" width="208" /></a>
+			<span></span>
+		</li>
+		<li class="pic3">
+			<a href="javascript:;"><img src="images/pic3.gif" alt="pic3" class="unactive" width="187" /></a>
+			<span></span>
+		</li>
+	</ul>
+
+</body>
+</html>

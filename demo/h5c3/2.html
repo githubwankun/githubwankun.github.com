@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d图片环</title>
+	<style>
+		*{ margin:0; padding:0; }
+		body{ background: #000; }
+		ul{
+			width: 150px;
+			height: 200px;
+			margin: 150px auto;
+			position: relative;
+			top: 0;
+			left: 0;
+			-webkit-transition: 4s all ease;
+			-o-transition: 4s all ease;
+			transition: 4s all ease;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+			-webkit-transform: perspective(800px) rotateY(0) rotateX(-20deg);
+			-ms-transform: perspective(800px) rotateY(0) rotateX(-20deg);
+			-o-transform: perspective(800px) rotateY(0) rotateX(-20deg);
+			transform: perspective(800px) rotateY(0) rotateX(-20deg);
+		}
+		li{
+			width: 150px;
+			height: 200px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			-webkit-transition: 2s all ease;
+			-o-transition: 2s all ease;
+			transition: 2s all ease;
+			list-style:none;
+		}
+		li img{
+			width: 100%;
+		}
+		ul:active{
+			-webkit-transform: perspective(800px) rotateY(360deg) rotateX(-20deg);
+			-ms-transform: perspective(800px) rotateY(360deg) rotateX(-20deg);
+			-o-transform: perspective(800px) rotateY(360deg) rotateX(-20deg);
+			transform: perspective(800px) rotateY(360deg) rotateX(-20deg);
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oUl = document.getElementsByTagName('ul')[0];
+			var aLi = oUl.children;
+			var i = aLi.length-1;
+			var timer = setInterval(function(){
+				aLi[i].style.transform = 'rotateY('+i*360/aLi.length+'deg) translateZ(350px)';
+				i--;
+				if (i<0)clearInterval(timer);
+			},400);
+		};
+	</script>
+</head>
+<body>
+	<ul>
+		<li><img src="../js/images/01.jpg" /></li>
+		<li><img src="../js/images/02.jpg" /></li>
+		<li><img src="../js/images/03.jpg" /></li>
+		<li><img src="../js/images/4.jpg" /></li>
+		<li><img src="../js/images/5.jpg" /></li>
+		<li><img src="../js/images/6.jpg" /></li>
+		<li><img src="../js/images/7.jpg" /></li>
+		<li><img src="../js/images/8.jpg" /></li>
+		<li><img src="../js/images/mightyst01.png" /></li>
+		<li><img src="../js/images/bb8.png" /></li>
+		<li><img src="../js/images/godfather1.jpg" /></li>
+	</ul>
+</body>
+</html>

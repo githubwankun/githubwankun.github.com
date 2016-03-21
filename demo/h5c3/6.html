@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弧表+文字</title>
+	<style>
+		*{ margin: 0; padding: 0; }
+		body{
+			background: #000;
+			text-align: center;
+		}
+		canvas{
+			background: #fff;
+		}
+	</style>
+	<script>
+		function toDou(n){
+			return n<10?'0'+n:''+n;
+		}
+		function d2a(n){
+			return n*Math.PI/180;
+		}
+		document.addEventListener('DOMContentLoaded',function(){
+			var oC = document.getElementById('canvas');
+			var gd = oC.getContext('2d');
+			var cx = 400,
+				cy = 300;
+
+			function drawD(start,end,r,color){
+				r = r||100;
+				color = color||'#000';
+				gd.beginPath();
+				gd.strokeStyle = color;
+				gd.lineWidth = 20;
+				gd.arc(cx,cy,r,d2a(start-90),d2a(end-90),false);
+				gd.stroke();
+			}
+			function tick(){
+				gd.clearRect(0,0,oC.width,oC.height);
+				var oDate = new Date();
+				var h = oDate.getHours();
+				var m = oDate.getMinutes();
+				var s = oDate.getSeconds();
+				var ms = oDate.getMilliseconds();
+
+				drawD(0,h%12*30+m/60*30,60,'#f90');
+				drawD(0,m*6+s/60*6,80,'#f09');
+				drawD(0,s*6+ms/1000*6,100,'#f99');
+				var str = toDou(h)+':'+toDou(m)+':'+toDou(s);
+				gd.font = '20px 微软雅黑';
+				gd.textAlign = 'center';
+				gd.textBaseline = 'middle';
+				gd.fillStyle = '#f00';
+				gd.fillText(str,cx,cy);
+			}
+			tick();
+			setInterval(tick,16);
+		},false);
+	</script>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="600"></canvas>
+</body>
+</html>

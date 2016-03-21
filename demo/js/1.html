@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{ margin:0; padding:0; }
+		div{
+			width: 400px;
+			height: 567px;
+			float: left;
+			position: relative;
+			top: 0;
+			left: 0;
+			margin: 20px;
+
+		}
+		#s img{
+			width: 100%;
+		}
+		span{
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: rgba(255,255,255,0.6);
+			width: 100px;
+			height: 100px;
+			display: none;
+		}
+		#b{
+			overflow: hidden;
+			display: none;
+		}
+		#b img{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var oS = document.getElementById('s');
+			var oB = document.getElementById('b');
+			var oM = document.getElementById('m');
+			var oImg = oB.children[0];
+			oS.onmouseover=function(){
+				oM.style.display='block';
+				oB.style.display='block';
+			};
+			oS.onmouseout=function(){
+				oM.style.display='none';
+				oB.style.display='none';
+			};
+			oS.onmousemove = function(ev){
+				var oEvent = ev||event;
+				var l = oEvent.clientX-oS.offsetLeft-oM.offsetWidth/2;
+				var t = oEvent.clientY-oS.offsetTop-oM.offsetHeight/2;
+				if (l<0) {
+					l = 0;
+				}else if(l>oS.offsetWidth-oM.offsetWidth){
+					l = oS.offsetWidth-oM.offsetWidth
+				};
+				if (t<0) {
+					t = 0;
+				}else if(t>oS.offsetHeight-oM.offsetHeight){
+					t = oS.offsetHeight-oM.offsetHeight
+				};
+				oM.style.left = l +'px';
+				oM.style.top = t +'px';
+				oImg.style.left = -l/(oS.offsetWidth-oM.offsetWidth)*(oImg.offsetWidth-oB.offsetWidth) +'px';
+				oImg.style.top = -t/(oS.offsetHeight-oM.offsetHeight)*(
+					oImg.offsetHeight-oB.offsetHeight) +'px';
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="s">
+		<img src="./images/godfather1.jpg" alt="" />
+		<span id="m"></span>
+	</div>
+	<div id="b">
+		<img src="./images/godfather2.jpg" alt="" />
+	</div>
+</body>
+</html>
