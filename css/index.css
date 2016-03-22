@@ -1,5 +1,6 @@
 .header{
     width: 100%;
+    height: 800px;
 }
 .hd{
     width: 100%;
@@ -41,6 +42,7 @@
     overflow: hidden;
 }
 .banner ul{
+    height: 800px;
     position: absolute;
     top: 0;
     left: 0;
