@@ -43,11 +43,17 @@
 			var oB = document.getElementById('b');
 			var oM = document.getElementById('m');
 			var oImg = oB.children[0];
-			oS.onmouseover=function(){
+			oS.onmouseover=function(ev){
+				var oEvent = ev||event;
+				var oFrom = oEvent.fromElement||oEvent.relatedTarget;
+				if(oS.contains(oFrom))return;
 				oM.style.display='block';
 				oB.style.display='block';
 			};
-			oS.onmouseout=function(){
+			oS.onmouseout=function(ev){
+				var oEvent = ev||event;
+				var oTo = oEvent.toElement||oEvent.relatedTarget;
+				if(oS.contains(oTo))return;
 				oM.style.display='none';
 				oB.style.display='none';
 			};
