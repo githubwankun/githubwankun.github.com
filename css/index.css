@@ -2,6 +2,12 @@
     width: 100%;
     height: 800px;
 }
+.mobile{
+  display: block;
+  width: 100%;
+  height: 40px;
+  background: red;
+}
 .hd{
     width: 100%;
     height: 60px;
