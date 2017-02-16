@@ -1,13 +1,42 @@
 'use strict'
 
-;(function(win,doc){
-	function change(){
-		document.documentElement.style.fontSize = document.documentElement.clientWidth/320*20 +'px';
-	}
-	doc.addEventListener('DOMContentLoaded',change,false);
-	win.addEventListener('resize',change,false);
+// ;(function(win,doc){
+// 	function change(){
+// 		document.documentElement.style.fontSize = document.documentElement.clientWidth/320*20 +'px';
+// 	}
+// 	doc.addEventListener('DOMContentLoaded',change,false);
+// 	win.addEventListener('resize',change,false);
+//
+// })(window,document);
 
-})(window,document);
+;(function(doc,win){
+  var docEle = doc.documentElement,
+      resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+      recalc = function(){
+        docEle.style.fontSize = docEle.clientWidth/320*20 + 'px';
+      };
+  if(!doc.addEventListener) return;
+  doc.addEventListener(resizeEvt, recalc, false);
+	win.addEventListener('DOMContentLoaded', recalc, false);
+
+})(document,window);
+
+// ;(function (doc, win) {
+//         var docEl = doc.documentElement,
+//             resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+//             recalc = function () {
+//                 var clientWidth = docEl.clientWidth;
+//                 if (!clientWidth) return;
+//
+//                     docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+//
+//             };
+//
+//         if (!doc.addEventListener) return;
+//         win.addEventListener(resizeEvt, recalc, false);
+//         doc.addEventListener('DOMContentLoaded', recalc, false);
+//     })(document, window);
+
 
 document.addEventListener('DOMContentLoaded',function(){
 	;(function(){
